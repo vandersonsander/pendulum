@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #eef;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pendulum {
+  display: flex;
+  border-top: 5px solid #000;
+  height: 100px;
+  width: 120px;
+  justify-content: space-around;
+}
+.pendulum > div {
+  width: 1px;
+  height: 97px;
+  background: #000;
+  position: relative;
+  transform-origin: center top;
+}
+
+.pendulum > div::before {
+  content: '';
+  height: 25px;
+  width: 25px;
+  background: radial-gradient(closest-side at 25% , #fff,20%,#000,20%,#fff,50%,#10101000), radial-gradient(closest-side at 75%, #fff,20%,#000,20%,#fff,50%,#101010);
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  margin: auto;
+  left: 50%;
+  transform: translate(-50%,0);
+}
+.pendulum > div:first-child {
+  animation: pow-left .8s infinite alternate;
+  animation-timing-function: cubic-bezier(0,.14,.4,.98);
+}
+.pendulum > div:last-child {
+  animation: pow-right .8s infinite alternate;
+  animation-delay: .8s;
+  animation-timing-function: cubic-bezier(0,.14,.4,.98);;
+}
+@keyframes pow-left {
+  50% {transform: rotate(0)}
+  to {transform: rotate(30deg)}
+}
+@keyframes pow-right {
+  50% {transform: rotate(0)}
+  to {transform: rotate(-30deg)}
+}
